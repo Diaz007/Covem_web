@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Covem_web.Vista_Servicio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Lista de Servicios</h4>
+        <p>
+            @Html.ActionLink("Registrar Nuevo Servicio", "Create")
+        </p>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>CLasificacion</th>
+                                <th>Semanas generar Servicio</th>
+                                <th>Dias en Realizar Servicios </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td class="py-1">
+                                    @item.servicio.nombreServicio
+
+                                </td>
+
+                                <td>@item.categoria.categoria </td>
+                                <td>@item.servicio.semanasGarantiaservicio meses(s)</td>
+                                <td>@item.servicio.diasRealizarServicio dia(s)</td>
+                                <td>
+                                    @Html.ActionLink("Editar", "edit", new { id = item.servicio.id }) |
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.servicio.id, @class = "btn btn-outline-success" }, new { onclick = "return confirm('Seguro de eliminar esta Marca? ');" })
+
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

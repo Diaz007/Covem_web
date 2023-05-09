@@ -1,0 +1,204 @@
+﻿@model Covem_web.Automoviles
+
+@{
+    Covem_web.vtreact_Covume2Entities db = new Covem_web.vtreact_Covume2Entities();
+
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+<script>
+    function SelectedIndexChanged(id) {
+
+        var v = '';
+        $("#txtResponsable").empty();
+    $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetPersona", "Entrega")',
+                dataType: 'json',
+        data: { id: id },
+        success: function (personas) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+            $.each(personas, function (i, persona) {
+                v += persona.Value + ' | '+ persona.Text;
+            });
+            /* alert(v);*/
+
+            document.getElementsByName('#txtResponsable').value = v;
+            document.getElementById("txtResponsable").value = v;
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+    }
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()<div class="form-horizontal">
+        <h4>Formato Orden de Mantenimiento</h4>
+        <hr />
+
+
+        @if (Model.bandera == 0)
+        {
+            <h4>Servicios Disponibles </h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="pt-1 ps-0">
+                                Servicio
+                            </th>
+                            <th class="pt-1">
+                                Dias a Realizar Servicio
+                            </th>
+                            <th class="pt-1">
+                                Accion
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Lservicios.ToList())
+                        {
+                            <tr>
+                                <td class="py-1 ps-0">
+                                    <div class="d-flex align-items-center">
+
+                                        <div class="ms-3">
+                                            <p class="mb-0">@item.nombreServicio </p>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    @item.diasRealizarServicio
+                                </td>
+                                <td>
+                                    @* <label class="badge badge-success">Low</label>*@
+                                    <button class="badge badge-light"> @Html.ActionLink("Agregar Servicio", "edit", new { id = Model.EntregaRecepcion.id, opcion = -1, idservicio = item.id }) </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <hr />
+            <h4 class="card-title"> Servicios Agregados a la Orden </h4>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="pt-1 ps-0">
+                                Servicio
+                            </th>
+                            <th class="pt-1">
+                                Dias a Realizar Servicio
+                            </th>
+                            <th class="pt-1">
+                                Accion
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model.LserviciosA.ToList())
+                        {
+                            if (item != null)
+                            {
+                            <tr>
+                                <td class="py-1 ps-0">
+                                    <div class="d-flex align-items-center">
+
+                                        <div class="ms-3">
+                                            <p class="mb-0">@item.nombreServicio </p>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    @item.diasRealizarServicio
+                                </td>
+                                <td>
+                                    @* <label class="badge badge-success">Low</label>*@
+                                    <button class="badge badge-light"> @Html.ActionLink("Eliminar Servicio", "edit", new { id = Model.EntregaRecepcion.id, opcion = -2, idservicio=item.id },new { onclick = "return confirm('Seguro de eliminar este Servicio del Vehiculo ');" }) </button>
+                                </td>
+                            </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="badge badge-secondary"> @Html.ActionLink("Continuar", "edit", new {id= Model.EntregaRecepcion.id, opcion = 1 }) </button>
+
+                </div>
+            </div>
+
+        }
+        @if (Model.bandera == 1)
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                Automovil
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.EntregaRecepcion.idAuto, ViewBag.Autos as SelectList, "--Seleccione Auto--", new { @class = "form-control", onchange = "SelectedIndexChanged(this.value)" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                Personal Responsable
+                <div class="col-md-10">
+                    <input type="text" id="txtResponsable" name="txtResponsable" value="@Model.persona.Id | @Model.persona.nombre @Model.persona.Apellidos" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                Taller Mecanico
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.EntregaRecepcion.idtaller, ViewBag.Talleres as SelectList, "--Seleccione Taller--", new { @class = "form-control" })
+
+                </div>
+            </div>
+            <div class="form-group ">
+                Fecha de envio A Taller
+                <div class="col-sm-10">
+
+                    <input class="form-control" id="txtFechaN" name="txtFechaN" value="@Model.EntregaRecepcion.fechaEntrega" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd/mm/yyyy" />
+                </div>
+            </div>
+            <div class="form-group ">
+                Km antes de enviar a taller
+                <div class="col-sm-10">
+
+                    <input class="form-control" id="txtKm" name="txtKm" value="@((double)Model.EntregaRecepcion.kilometrajeEntrega.Value)" type="number" />
+                </div>
+            </div>
+            <div class="form-group ">
+                Notas
+                <div class="col-sm-10">
+
+                    <input class="form-control" id="txtNotas" name="txtNotas" value="@Model.EntregaRecepcion.ObservecionesEntrega" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Registrar Orden  de Servicio" class="btn btn-primary" />
+                </div>
+            </div>
+        }
+
+
+
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

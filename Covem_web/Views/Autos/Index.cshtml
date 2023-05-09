@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Covem_web.Automoviles>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Lista de Autos</h4>
+        <p>
+            @Html.ActionLink("Registrar Auto", "Create")
+        </p>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>Automovil</th>
+                                <th>Asignado  A</th>
+                                <th>Taller Mecanico</th>
+                                <th>Acciones</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="py-1">
+                                        <div class="d-flex align-items-center">
+                                            <img src="@item.marca.foto" alt="image" />
+                                            <div class="ms-3">
+                                                <p class="mb-0">@item.marca.Marca1</p>
+                                                <p class="mb-0 text-muted text-small"> @item.modelo.modelo1 @item.auto.año</p>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        @if (item.persona != null)
+                                        {
+                                            <div class="d-flex align-items-center">
+
+                                                <div class="ms-3">
+                                                    <p class="mb-0">@item.persona.nombre @item.persona.Apellidos</p>
+                                                    <p class="mb-0 text-muted text-small"> @item.persona.Licencia</p>
+                                                </div>
+                                            </div>}
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">No Asignado</div>
+                                        }
+                                    </td>
+                                    <td>En Activo </td>
+                                    <td>
+                                        @Html.ActionLink("Asignar a Persona", "Asignar", new { id = item.auto.id }) |
+                                        @Html.ActionLink("Detalles", "edit", new { id = item.auto.id }) |
+                                        @Html.ActionLink("Fotografias", "Fotos", new { id = item.auto.id }) |
+                                        @Html.ActionLink("Documentacion", "Documentacion", new { id = item.auto.id }) |
+                                        @Html.ActionLink("Eliminar", "DeleteAuto", new { id = item.auto.id, @class = "btn btn-outline-success" }, new { onclick = "return confirm('Seguro de eliminar este Vehiculo ');" })
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

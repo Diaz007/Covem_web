@@ -1,0 +1,156 @@
+﻿@model Covem_web.Automoviles
+
+@{
+    ViewBag.Title = "Asignacion de Personal";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+<h2>Terminacion de orden de Servicio </h2>
+
+<div>
+    <h4>Automoviles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+</div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div class="row">
+
+        <div class="col-md-5 grid-margin grid-margin-md-0 stretch-card">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div>
+                        @if (@Model.Fotos.Count == 0)
+                        {<img src=@Model.marca.foto class="img-lg rounded-circle mb-2" alt="profile image" /> }
+                        else
+                        {<img src=@Model.Fotos.FirstOrDefault().url class="img-lg rounded-circle mb-2" alt="profile image" />}
+
+                        <h4>@Model.marca.Marca1 @Model.modelo.modelo1</h4>
+                        <p class="text-muted mb-0">@Model.auto.año</p>
+                    </div>
+                    <p class="mt-2 card-text">
+                        @Model.Taller.nombreTaller @Model.Taller.ubicacion
+                    </p>
+                    @*<button class="badge badge-light"> @Html.ActionLink("Terminar Orden de Servicio", "Terminar", new { opcion = 2 }) </button>*@
+
+                    <div class="border-top pt-3">
+                        <div class="row">
+                            <div class="col-4">
+                                <h6> <input type="text" id="txtNombre" name="txtNombre" class="form-control" /></h6>
+                                <p>Km Recorridos</p>
+                            </div>
+                            <div class="col-4">
+                                <h6>1596</h6>
+                                <p>Km para proximo Servicio</p>
+                            </div>
+                            <div class="col-4">
+                                <h6>10</h6>
+                                <p>Servicios</p>
+                            </div>
+                        </div>
+                        <input type="submit" value="Terminar Orden " class="btn btn-google" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 grid-margin grid-margin-md-0 stretch-card">
+            @if (@Model.persona != null)
+            {
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="pt-1 ps-0">
+                                            Conductor
+                                        </th>
+                                        <th class="pt-1">
+                                            Licencia
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-1 ps-0">
+                                            <div class="d-flex align-items-center">
+                                                <img src=@Model.persona.Imagen alt="profile" />
+                                                <div class="ms-3">
+                                                    <p class="mb-0">@Model.persona.nombre @Model.persona.Apellidos</p>
+                                                    <p class="mb-0 text-muted text-small">@Model.persona.Telefono</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @Model.persona.Licencia
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Servicios</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="pt-1 ps-0">
+                                            Servicio
+                                        </th>
+                                        <th class="pt-1">
+                                            Proxima vez en Realizar
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model.LserviciosA)
+                                    {
+                                        <tr>
+                                            <td class="py-1 ps-0">
+                                                <div class="d-flex align-items-center">
+
+                                                    <div class="ms-3">
+
+
+                                                        <p class="mb-0">@item.nombreServicio</p>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @if (item.semanasGarantiaservicio == 0)
+                                                {<p class="mb-0">Sin proxima actualizacion</p> }
+                                                else
+                                                {
+                                                    DateTime xx = DateTime.Now.AddMonths(((int)item.semanasGarantiaservicio  ));
+
+                                                    <p class="mb-0">@xx.ToShortDateString() proxima actualizacion</p>
+                                                }
+
+
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+}

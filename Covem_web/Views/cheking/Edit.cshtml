@@ -1,0 +1,1112 @@
+﻿@model Covem_web.Vista_Cheking
+
+@{
+    ViewBag.Title = "Nuevo";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+<h2>Nuevo</h2>
+
+<div class="row">
+    <div class="col-md-5 grid-margin grid-margin-md-0 stretch-card">
+        <div class="card">
+            <div class="card-body text-center">
+                <div>
+                    <img src=@Model.persona.Imagen class="img-lg rounded-circle mb-2" alt="profile image" />
+                    <h4>@Model.persona.nombre @Model.persona.Apellidos</h4>
+                    <p class="text-muted mb-0">@Model.persona.Licencia</p>
+                </div>
+                <p class="mt-2 card-text">
+                    @Model.Marca.Marca1 @Model.modelo.modelo1  @Model.auto.año
+                </p>
+
+                <div class="border-top pt-3">
+                    <div class="row">
+                        <div class="col-4">
+
+                        </div>
+                        <div class="col-4">
+                            <h6>@Model.auto.KilometrajeActual</h6>
+                            <p>Ultimo Registro de Km</p>
+                        </div>
+                        <div class="col-4">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 grid-margin grid-margin-md-0 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Documentos Activos</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="pt-1 ps-0">
+                                    Documento
+                                </th>
+                                <th class="pt-1">
+                                    Estatus
+                                </th>
+                                <th class="pt-1">
+                                    Vigencia
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (Model.lista.Count > 0)
+                                {
+                                    foreach (var item in Model.lista)
+                                    {
+                                        <tr>
+                                            <td class="py-1 ps-0">
+                                                <div class="d-flex align-items-center">
+
+                                                    <div class="ms-3">
+                                                        <p class="mb-0">@item.nombre</p>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @item.Vigencia.Value.ToShortDateString()
+
+                                            </td>
+                                            <td>
+                                                @if (@item.Vigencia.Value < DateTime.Now)
+                                                {<label class="badge badge-danger">Vencido</label> }
+                                                else
+                                                {<label class="badge badge-success">Activo</label>}
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Edit", "cheking", FormMethod.Post, new
+{
+    enctype = "multipart/form-data"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.persona.Id)
+    @Html.HiddenFor(x => x.auto.id)
+    @Html.HiddenFor(x => x.cheking.id)
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Cheking Diario</h4>
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <ul class="nav nav-pills nav-pills-custom" id="pills-tab-custom" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-home-tab-custom" data-bs-toggle="pill" href="#pills-health" role="tab" aria-controls="pills-home" aria-selected="true">
+                                    Documentos
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-profile-tab-custom" data-bs-toggle="pill" href="#pills-career" role="tab" aria-controls="pills-profile" aria-selected="false">
+                                    Interior
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-contact-tab-custom" data-bs-toggle="pill" href="#pills-music" role="tab" aria-controls="pills-contact" aria-selected="false">
+                                    Motor
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-vibes-tab-custom" data-bs-toggle="pill" href="#pills-vibes" role="tab" aria-controls="pills-contact" aria-selected="false">
+                                    Marcado de Partes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-energy-tab-custom" data-bs-toggle="pill" href="#pills-energy" role="tab" aria-controls="pills-contact" aria-selected="false">
+                                    Extras
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-energy-tab-custom" data-bs-toggle="pill" href="#pills-Gasolina" role="tab" aria-controls="pills-contact" aria-selected="false">
+                                    Gasolina y Aceites
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-energy-tab-custom" data-bs-toggle="pill" href="#pills-Carroceria" role="tab" aria-controls="pills-contact" aria-selected="false">
+                                    Carroceria y Observaciones
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content tab-content-custom-pill" id="pills-tabContent-custom">
+                            <div class="tab-pane fade show active" id="pills-health" role="tabpanel" aria-labelledby="pills-home-tab-custom">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Documentacion en el vehiculo</h4>
+                                            <script type="text/javascript">
+                                                function ch(v) {
+                                                    //  var v = //document.getElementsByName(id);
+
+
+
+                                                    v.style.backgroundColor === "rgb(255, 255, 255)" ?
+                                                        v.style.backgroundColor = "#57B657" :
+                                                        v.style.backgroundColor = "#fff"
+
+                                                    var x = 'c' + v.id;
+                                                    // alert(v.id)
+
+                                                    //  alert(x);//#57B657 !important
+                                                    v.style.backgroundColor === "rgb(255, 255, 255)" ?
+                                                        document.getElementById(x).value = "false" :
+                                                        document.getElementById(x).value = "true"
+
+
+                                                    // x.checked = !X.checked;
+                                                }
+                                            </script>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div id="dragula-left" class="py-2">
+                                                        @if (@Model.cheking.valordoc1 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2 " style="background-color: #57B657" type="button" id="v1" name="v1" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-desktop icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-10 col-sm-10">
+                                                                                    <h6 class="mb-1">Tarjeta de Circulacion</h6>
+
+                                                                                </div>
+                                                                                <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                                    <input id="cv1" name="cv1" value="true" hidden="hidden" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v1" name="v1" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-desktop icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-10 col-sm-10">
+                                                                                    <h6 class="mb-1">Tarjeta de Circulacion</h6>
+
+                                                                                </div>
+                                                                                <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                                    <input id="cv1" name="cv1" value="false" hidden="hidden" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+
+                                                        @if (@Model.cheking.valordoc2 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" style="background-color: #57B657" type="button" id="v2" name="v2" onclick="ch(this)">
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-file icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Seguro Vigente</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv2" vi name="cv2" hidden="hidden" value="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {<button class="card rounded border mb-2" type="button" id="v2" name="v2" onclick="ch(this)">
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-file icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Seguro Vigente</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv2" vi name="cv2" hidden="hidden" value="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>}
+
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div id="dragula-right" class="py-2">
+                                                        @if (@Model.cheking.valordoc3 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" style="background-color: #57B657" type="button" id="v3" name="v3" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-agenda icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Manual de Usuario</h6>
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv3" vi name="cv3" hidden="hidden" value="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v3" name="v3" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-agenda icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Manual de Usuario</h6>
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv3" vi name="cv3" hidden="hidden" value="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        @if (@Model.cheking.valordoc4 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" style="background-color: #57B657" type="button" id="v4" name="v4" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-calendar icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Carnet de Servicios</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv4" vi name="cv4" hidden="hidden" value="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v4" name="v4" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-calendar icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Carnet de Servicios</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv4" vi name="cv4" hidden="hidden" value="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </button>
+                                                        }
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-career" role="tabpanel" aria-labelledby="pills-profile-tab-custom">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Interior del Automovil</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div id="dragula-left" class="py-2">
+                                                        @if (@Model.cheking.valorint1 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" style="background-color: #57B657" type="button" id="v5" name="v5" onclick="ch(this)">
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-desktop icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-10 col-sm-10">
+                                                                                    <h6 class="mb-1">Acientos Delanteros</h6>
+
+                                                                                </div>
+                                                                                <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                                    <input id="cv5" name="cv5" value="true" hidden="hidden" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v5" name="v5" onclick="ch(this)">
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-desktop icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-10 col-sm-10">
+                                                                                    <h6 class="mb-1">Acientos Delanteros</h6>
+
+                                                                                </div>
+                                                                                <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                                    <input id="cv5" name="cv5" value="false" hidden="hidden" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        @if (@Model.cheking.valorint2 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" style="background-color: #57B657" id="v6" name="v6" onclick="ch(this)">
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-file icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Acientos Traceros</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv6" vi name="cv6" hidden="hidden" value="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v6" name="v6" onclick="ch(this)">
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-file icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Acientos Traceros</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv6" vi name="cv6" hidden="hidden" value="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        @if (@Model.cheking.valorint3 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" style="background-color: #57B657" type="button" id="v7" name="v7" onclick="ch(this)">
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-agenda icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">alfombrado</h6>
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv7" vi name="cv7" hidden="hidden" value="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v7" name="v7" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-agenda icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">alfombrado</h6>
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv7" vi name="cv7" hidden="hidden" value="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        @if (@Model.cheking.valorint4 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" style="background-color: #57B657" type="button" id="v8" name="v8" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-calendar icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Moldura en puertas</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv8" vi name="cv8" hidden="hidden" value="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v8" name="v8" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-calendar icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Moldura en puertas</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv8" vi name="cv8" hidden="hidden" value="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </button>
+                                                        }
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div id="dragula-right" class="py-2">
+                                                        @if (@Model.cheking.valorint5 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" style="background-color: #57B657" id="v9" name="v9" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-desktop icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-10 col-sm-10">
+                                                                                    <h6 class="mb-1">Tablero</h6>
+
+                                                                                </div>
+                                                                                <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                                    <input id="cv9" name="cv9" value="true" hidden="hidden" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v9" name="v9" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-desktop icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-10 col-sm-10">
+                                                                                    <h6 class="mb-1">Tablero</h6>
+
+                                                                                </div>
+                                                                                <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                                    <input id="cv9" name="cv9" value="false" hidden="hidden" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+
+                                                        @if (@Model.cheking.valorint6 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" style="background-color: #57B657" type="button" id="v10" name="v10" onclick="ch(this)">
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-file icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Tapetes </h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv10" vi name="cv10" hidden="hidden" value="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v10" name="v10" onclick="ch(this)">
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-file icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Tapetes </h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv10" vi name="cv10" hidden="hidden" value="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+
+                                                        @if (@Model.cheking.valorint7 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" style="background-color: #57B657" type="button" id="v11" name="v11" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-agenda icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Cinturones de Seguridad</h6>
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv11" vi name="cv11" hidden="hidden" value="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v11" name="v11" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-agenda icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Cinturones de Seguridad</h6>
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv11" vi name="cv11" hidden="hidden" value="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        }
+
+                                                        @if (@Model.cheking.valorint8 == true)
+                                                        {
+                                                            <button class="card rounded border mb-2" style="background-color: #57B657" type="button" id="v12" name="v12" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-calendar icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Retrovisor</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv12" vi name="cv12" hidden="hidden" value="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="card rounded border mb-2" type="button" id="v12" name="v12" onclick="ch(this)">
+
+                                                                <div class="card-body p-3">
+                                                                    <div class="media">
+                                                                        <i class="ti-calendar icon-sm align-self-center me-3"></i>
+                                                                        <div class="media-body">
+                                                                            <h6 class="mb-1">Retrovisor</h6>
+
+                                                                        </div>
+                                                                        <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                            <input id="cv12" vi name="cv12" hidden="hidden" value="false" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </button>
+                                                        }
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-music" role="tabpanel" aria-labelledby="pills-contact-tab-custom">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Motor</h4>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div id="dragula-left" class="py-2">
+                                                        <button class="card rounded border mb-2" type="button" id="v13" name="v13" onclick="ch(this)">
+
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-desktop icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-10 col-sm-10">
+                                                                                <h6 class="mb-1">Nivel de Aceite </h6>
+
+                                                                            </div>
+                                                                            <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                                <input id="cv13" name="cv13" value="false" hidden="hidden" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+
+                                                        <button class="card rounded border mb-2" type="button" id="v14" name="v14" onclick="ch(this)">
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-file icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Nivel de anticongelante</h6>
+
+                                                                    </div>
+                                                                    <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                        <input id="cv14" vi name="cv14" hidden="hidden" value="false" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div id="dragula-right" class="py-2">
+
+                                                        <button class="card rounded border mb-2" type="button" id="v15" name="v15" onclick="ch(this)">
+
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-agenda icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">nivel de liquido de Frenos </h6>
+                                                                    </div>
+                                                                    <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                        <input id="cv15" vi name="cv15" hidden="hidden" value="false" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                        <button class="card rounded border mb-2" type="button" id="v16" name="v16" onclick="ch(this)">
+
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-calendar icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">liquido de parabrisas</h6>
+
+                                                                    </div>
+                                                                    <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                        <input id="cv16" vi name="cv16" hidden="hidden" value="false" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-vibes" role="tabpanel" aria-labelledby="pills-vibes-tab-custom">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Marcado de Partes</h4>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div id="dragula-left" class="py-2">
+                                                        <button class="card rounded border mb-2" type="button" id="v17" name="v17" onclick="ch(this)">
+
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-desktop icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-10 col-sm-10">
+                                                                                <h6 class="mb-1">Bateria </h6>
+
+                                                                            </div>
+                                                                            <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                                <input id="cv17" name="cv17" value="false" hidden="hidden" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+
+                                                        <button class="card rounded border mb-2" type="button" id="v18" name="v18" onclick="ch(this)">
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-file icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Gato Hidraulico</h6>
+
+                                                                    </div>
+                                                                    <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                        <input id="cv18" vi name="cv18" hidden="hidden" value="false" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div id="dragula-right" class="py-2">
+
+                                                        <button class="card rounded border mb-2" type="button" id="v19" name="v19" onclick="ch(this)">
+
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-agenda icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">EXtra </h6>
+                                                                    </div>
+                                                                    <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                        <input id="cv19" vi name="cv19" hidden="hidden" value="false" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                        <button class="card rounded border mb-2" type="button" id="v20" name="v20" onclick="ch(this)">
+
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-calendar icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Señales de Emergencia</h6>
+
+                                                                    </div>
+                                                                    <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                        <input id="cv20" vi name="cv20" hidden="hidden" value="false" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-energy" role="tabpanel" aria-labelledby="pills-energy-tab-custom">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Extras</h4>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div id="dragula-left" class="py-2">
+                                                        <button class="card rounded border mb-2" type="button" id="v21" name="v21" onclick="ch(this)">
+
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-desktop icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-10 col-sm-10">
+                                                                                <h6 class="mb-1">llave </h6>
+
+                                                                            </div>
+                                                                            <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                                <input id="cv21" name="cv21" value="false" hidden="hidden" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+
+                                                        <button class="card rounded border mb-2" type="button" id="v22" name="v22" onclick="ch(this)">
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-file icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Candados</h6>
+
+                                                                    </div>
+                                                                    <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                        <input id="cv22" vi name="cv22" hidden="hidden" value="false" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div id="dragula-right" class="py-2">
+
+                                                        <button class="card rounded border mb-2" type="button" id="v23" name="v23" onclick="ch(this)">
+
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-agenda icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Estereo </h6>
+                                                                    </div>
+                                                                    <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                        <input id="cv23" vi name="cv23" hidden="hidden" value="false" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                        <button class="card rounded border mb-2" type="button" id="v24" name="v24" onclick="ch(this)">
+
+                                                            <div class="card-body p-3">
+                                                                <div class="media">
+                                                                    <i class="ti-calendar icon-sm align-self-center me-3"></i>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Herramientas</h6>
+
+                                                                    </div>
+                                                                    <div class="col-md-2 col-sm-2 align-content-end align-items-end">
+                                                                        <input id="cv24" vi name="cv24" hidden="hidden" value="false" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Gasolina" role="tabpanel" aria-labelledby="pills-Gasolina-tab-custom">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Motor</h4>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div id="dragula-left" class="py-2">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p class="card-description">Nivel de Gasolina</p>
+                                                                <div class="br-wrapper br-theme-bars-movie mb-4">
+                                                                    <select id="example-movie" name="rating2" autocomplete="off" class="d-none">
+                                                                        @{
+                                                                            if (Model.cheking.gasolina == 0)
+                                                                            {
+                                                                                <option selected="selected" value="0">Sin Combusible</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option value="0">Sin Combusible</option>
+                                                                            }
+                                                                            if (Model.cheking.gasolina == 25)
+                                                                            {
+                                                                                <option value="25" selected="selected">Un Cuarto</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option value="25">Un Cuarto</option>
+                                                                            }
+                                                                            if (Model.cheking.gasolina == 50)
+                                                                            {
+                                                                                <option value="50" selected="selected">Medio</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option value="50">Medio</option>
+                                                                            }
+                                                                            if (Model.cheking.gasolina == 75)
+                                                                            {
+                                                                                <option value="75" selected="selected">tres Cuartos</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option value="75">tres Cuartos</option>
+                                                                            }
+                                                                            if (Model.cheking.gasolina == 100)
+                                                                            {
+                                                                                <option value="100" selected="selected">Lleno</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option value="100">Lleno</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div id="dragula-right" class="py-2">
+
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p class="card-description">Nivel Aceite</p>
+                                                                <div class="br-wrapper br-theme-bars-1to10">
+                                                                    <select id="example-1to10" name="rating" autocomplete="off" class="d-none">
+                                                                        @{
+                                                                            for (int i = 1; i < 11; i++)
+                                                                            {
+                                                                                string valor = i + "0%";
+                                                                                if (i == Model.cheking.aceite)
+                                                                                {
+                                                                                    <option value="@i" selected="selected">@valor</option>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <option value="@i">@valor</option>
+                                                                                }
+                                                                            }
+                                                                        }
+
+
+                                                                        @*<option value="2">20%</option>
+                                                                            <option value="3">30%</option>
+                                                                            <option value="4">40%</option>
+                                                                            <option value="5">50%</option>
+                                                                            <option value="6">60%</option>
+                                                                            <option value="7" selected="selected">70%</option>
+                                                                            <option value="8">80%</option>
+                                                                            <option value="9">90%</option>
+                                                                            <option value="10">100%</option>*@
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-Carroceria" role="tabpanel" aria-labelledby="pills-Carroceria-tab-custom">
+                                <div class="col-12 grid-margin">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Motor</h4>
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.cheking.kilometrajeActual, new { @class = "col-md-2 control-label" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(m => m.cheking.kilometrajeActual, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.cheking.notas, new { @class = "col-md-2 control-label" })
+                                                <div class="col-md-10">
+                                                    @Html.TextAreaFor(m => m.cheking.notas, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div id="dragula-left" class="py-2">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 col-form-label">Imagen</label>
+                                                            <input type="file" class="dropify" name="Image" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 col-form-label">Imagen</label>
+                                                            <input type="file" class="dropify" name="Image2" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div id="dragula-right" class="py-2">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 col-form-label">Imagen</label>
+                                                            <input type="file" class="dropify" name="Image3" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 col-form-label">Imagen</label>
+                                                            <input type="file" class="dropify" name="Image4" />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="d-flex justify-content-center">
+
+                                                    <button type="submit" class="btn btn-primary me-2">Confirmar Datos</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

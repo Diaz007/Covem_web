@@ -1,0 +1,61 @@
+﻿    @model Covem_web.servicios
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+ 
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4> Edicion de servicios</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nombreServicio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nombreServicio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nombreServicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+       Categoria de Servicio
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.idcategoria, ViewBag.Categorias as SelectList, Model.idcategoria.ToString(), new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Semanas para volver a generar Servicios (0 no aplica )
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.semanasGarantiaservicio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.semanasGarantiaservicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.diasRealizarServicio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.diasRealizarServicio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.diasRealizarServicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar Edicion" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

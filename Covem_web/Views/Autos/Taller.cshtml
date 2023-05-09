@@ -1,0 +1,190 @@
+﻿@model Covem_web.Automoviles
+
+@{
+    ViewBag.Title = "Taller";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+<h2>Asignacion de Auto  a Taller Mecanico</h2>
+
+<div>
+    <h4>Automoviles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+</div>
+
+<div class="row">
+    <div class="col-md-5 grid-margin grid-margin-md-0 stretch-card">
+        <div class="card">
+            <div class="card-body text-center">
+                <div>
+                    <img src=@Model.Fotos.FirstOrDefault().url class="img-lg rounded-circle mb-2" alt="profile image" />
+                    <h4>@Model.marca.Marca1 @Model.modelo.modelo1</h4>
+                    <p class="text-muted mb-0">@Model.auto.año</p>
+                </div>
+                <p class="mt-2 card-text">
+                    Notas del Auto
+                </p>
+                <button class="btn btn-info btn-sm mt-3 mb-4">controles</button>
+                <div class="border-top pt-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <h6>5896</h6>
+                            <p>Km Recorridos</p>
+                        </div>
+                        <div class="col-4">
+                            <h6>1596</h6>
+                            <p>Km para proximo Servicio</p>
+                        </div>
+                        <div class="col-4">
+                            <h6>10</h6>
+                            <p>Servicios</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 grid-margin grid-margin-md-0 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                @if (Model.Taller == null)
+                {
+                    <h4 class="card-title">Talleres Disponibles</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pt-1 ps-0">
+                                        Taller
+                                    </th>
+                                    <th class="pt-1">
+                                        Ubicacion
+                                    </th>
+                                    <th class="pt-1">
+                                        Accion
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var item in Model.Talleres_Disponibles.ToList())
+                                    {
+                                        <tr>
+                                            <td class="py-1 ps-0">
+                                                <div class="d-flex align-items-center">
+                                                    <img src=@item.id alt="profile" />
+                                                    <div class="ms-3">
+                                                        <p class="mb-0">@item.nombreTaller </p>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 text-muted text-small">@item.ubicacion</p>
+                                            </td>
+                                            <td>
+                                                @* <label class="badge badge-success">Low</label>*@
+                                                <button class="badge badge-success"> @Html.ActionLink("Asignar a taller", "taller", new { id = Model.auto.id, idTaller = item.id }) </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                @if (Model.Taller != null)
+                {
+                    <h4 class="card-title">Datos de Entrega de Vehiculo</h4>
+                    <p class="card-description">
+                        Basic form layout
+                    </p>
+                    using (Html.BeginForm("Taller", "Autos", FormMethod.Post, new
+                    {
+                        enctype = "multipart/form-data"
+                    }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="forms-sample">
+                            <div class="form-group">
+                                <label for="Usuario">Empleado Responsable</label>
+                                <input type="text" class="form-control" id="Usuario" name="Usuario" value="@Model.persona.nombre @Model.persona.Apellidos">
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaEntrada">Fecha</label>
+                                <input type="date" class="form-control" id="fechaEntrada" name="fechaEntrada" value="@DateTime.Now.ToShortDateString()" placeholder="fecha Entrada">
+                            </div>
+                            <div class="form-group">
+                                <label for="kmEntrada">Kilometraje Entrada</label>
+                                <input class="form-control" id="kmEntrada" name="kmEntrada" placeholder="km Entrada" value="@Model.EntregaRecepcion.kilometrajellegada">
+                            </div>
+                            <div class="form-group">
+                                <label for="notas">Notas</label>
+                                <input class="form-control" id="notas" value="notas">
+                            </div>
+                          
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </div>
+                     }
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 grid-margin grid-margin-md-0 stretch-card">
+        @if (@Model.Taller != null)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Conductores Designado</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pt-1 ps-0">
+                                        Taller
+                                    </th>
+                                    <th class="pt-1">
+                                        Ubicacion
+                                    </th>
+                                    <th class="pt-1">
+                                        Accion
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-1 ps-0">
+                                        <div class="d-flex align-items-center">
+
+                                            <div class="ms-3">
+                                                <p class="mb-0">@Model.Taller.nombreTaller </p>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @Model.Taller.ubicacion
+                                    </td>
+                                    <td>
+                                        @* <label class="badge badge-success">Low</label>*@
+                                        @* <button class="badge badge-danger"> @Html.ActionLink("Eliminar", "Asignar", new { id = Model.auto.id, idpersona = Model.persona.Id }) </button>*@
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

@@ -1,0 +1,285 @@
+﻿@model Covem_web.CascadingModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.auto.id)
+    <h4>Edicion de Automoviles</h4>
+    <div class="form-horizontal">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Registro de Conductores.</h4>
+                    <form class="form-sample">
+                        <p class="card-description">
+                            Informacion Personal
+                        </p>
+
+                        @Html.HiddenFor(x=>x.auto.id)
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Marca</label>
+                                    <div class="col-sm-9">
+
+                                        <select class="form-control" onchange="hola()" id="SlMarca" name="SlMarca">
+                                            @{
+                                                foreach (var item in Model.Marcas)
+                                                {
+                                                    if (item.id == Model.MarcaId)
+                                                    {
+                                                        <option selected="selected" value="@item.id">@item.Marca1</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.id">@item.Marca1</option>
+                                                    }
+
+                                                }
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Modelo</label>
+                                    <div class="col-sm-9">
+
+                                        <select class="form-control" id="SlModelo" name="SlModelo">
+                                            @{
+                                                foreach (var item in Model.Modelos)
+                                                {
+                                                    <option value="@item.id">@item.modelo1</option>
+                                                }
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Numero de Serie</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="txtMotor" name="txtMotor" value="@Model.auto.vin" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Año Produccion</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" id="txtProduccion" value="@Model.auto.año" name="txtProduccion" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Color</label>
+                                    <div class="col-sm-9">
+                                        <input id="txtColor" name="txtColor" value="@Model.auto.Color" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Placas</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="txtPlacas" value="@Model.auto.placas" name="txtPlacas" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Fecha de Adquisicion</label>
+                                    <div class="col-sm-9">
+
+                                        <input class="form-control" value="@Model.auto.FechaAdquisicion" id="txtFechaN" name="txtFechaN" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd/mm/yyyy" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Estatus</label>
+                                    <div class="col-sm-9">
+
+                                        <select class="form-control" id="Estatus" name="Estatus">
+
+                                            <option>Activo</option>
+                                            <option>En Taller</option>
+                                            <option>En Resguardo</option>
+                                            <option>No Disponible</option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Forma Fisica</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="EstatusFisico" name="EstatusFisico">
+
+                                            <option>Nuevo</option>
+                                            <option>Semi-nuevo</option>
+                                            <option>Usado</option>
+                                            <option>Fuera de Servicio</option>
+                                            <option>Perdida Total</option>
+
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Notas de Forma Fisica</label>
+                                    <div class="col-sm-9">
+
+                                        <input type="text" class="form-control" value="@Model.auto.NotasFisicas" id="txtNotaE" name="txtNotaE" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Propietario</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="SlPropietario"  name="SlPropietario">
+                                            <option>
+                                                PROYECTOS Y CONSTRUCCIONES MUSA, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                ADMINISTRADORA DE SERVICIOS BAJAMEX, S.C.
+                                            </option>
+                                            <option>
+                                                DIAGRAMA GRUPO INMOBILIARIO, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                ELEMENTOS ESTRUCTURALES DE BAJA CALIFORNIA, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                GRUPO MUZQUIZ, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                CARLO ENRIQUE MUZQUIZ DAVILA
+                                            </option>
+                                            <option>
+                                                ACOSTA VERDUGO ALONSO
+                                            </option>
+                                            <option>
+                                                AIDA GUADALUPE HERNANDEZ RUBIO
+                                            </option>
+                                            <option>
+                                                PLAZA COMERCIAL MONARCA, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                ASISTENCIA PROFESIONAL BAJAMEX, S.C.
+                                            </option>
+                                            <option>
+                                                INMOBILIARIA Y FRACCIONADORA LOMAS, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                GRUPO AMERICANO DEL NORTE, S.A DE C.V.
+                                            </option>
+                                            <option>
+                                                INMUEBLES Y ARRENDAMIENTOS DE BAJA CALIFORNIA, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                CENTRO COMERCIAL PAJARITA, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                MARTHA ALICIA FUENTES GARCIA
+                                            </option>
+                                            <option>
+                                                CONCRETO Y BLOQUERA ATLAS, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                CREACIONES ESTRUCTURALES DE TIJUANA, S.A. DE C.V.
+                                            </option>
+                                            <option>
+                                                DESARROLLADORA EL TECOLOTE S.A DE C.V.
+                                            </option>
+                                            <option>
+                                                DESARROLLADORA METRO S.A DE C.V.
+                                            </option>
+                                            <option>
+                                                INMOBILIARIA MUZAC S.A DE C.V.
+
+                                            </option>
+                                            <option>
+                                                MOSAICO EMPRESARIAL, S.A. DE C.V.
+
+                                            </option>
+                                            <option>
+                                                PROYECTOS DESARROLLOS Y MATERIALES PARA LA CONSTRUCCION DE BAJA CALIFORNIA, S.A. DE C.V.
+
+                                            </option>
+                                            <option>
+                                                PROYECTOS Y CONSTRUCCIONES MUSA, S.A. DE C.V.  (ARRENDAMIENTO)
+
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label"> </label>
+                                    <div class="col-sm-9">
+                                        <input type="submit" value="Create" class="btn btn-inverse-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

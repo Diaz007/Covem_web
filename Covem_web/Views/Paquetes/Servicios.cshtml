@@ -1,0 +1,110 @@
+﻿@model Covem_web.Vista_Paquete
+
+@{
+    ViewBag.Title = "Servicios";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+<h2>Grupo  de Servicios del Paquete @Model.grupo.nombre</h2>
+<h4>@Model.grupo.clave</h4>
+<hr />
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Haga Click en el Servicio de la Izquierda para Agregarlo, de igual manera seleccione el servicio de la derecha para quitarlo del grupo de servicios</h4>
+            <p class="card-description">
+
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="card-title">Servicios Disponibles</h6>
+                    <div id="dragula-event-left" class="py-2">
+                        @foreach (var item in Model.listaCompleta)
+                        {
+                            <a href="/Paquetes/Agregar/@item.id" class="card rounded border mb-2">
+                                <div class="card-body p-3">
+                                    <div class="media">
+                                        <i class="ti ti-pin-alt icon-sm text-primary align-self-center me-3"></i>
+                                        <div class="media-body">
+                                            <h6 class="mb-1">@item.nombreServicio</h6>
+                                            <p class="mb-0 text-muted">
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="card-title mt-4 mt-md-0">Servicios Agregados</h6>
+                    <div id="dragula-event-right" class="py-2">
+                        @if (Model.listaAgregar.Count > 0)
+                        {
+                            foreach (var item in Model.listaAgregar)
+                            {
+                                <a href="/Paquetes/Quitar/@item.id" class="card rounded border mb-2">
+                                    <div class="card-body p-3">
+                                        <div class="media">
+                                            <i class="ti ti-pin-alt icon-sm text-primary align-self-center me-3"></i>
+                                            <div class="media-body">
+                                                <h6 class="mb-1">@item.nombreServicio</h6>
+                                                <p class="mb-0 text-muted">
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Guardar " class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@

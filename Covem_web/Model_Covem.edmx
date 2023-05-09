@@ -1,0 +1,1321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="vtreact_Covume2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idmarca" Type="int" />
+          <Property Name="idmodelo" Type="int" />
+          <Property Name="vin" Type="nvarchar" MaxLength="100" />
+          <Property Name="año" Type="int" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="placas" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaAdquisicion" Type="date" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="Estatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="KilometrajeActual" Type="money" />
+          <Property Name="estadoFisico" Type="nvarchar" MaxLength="50" />
+          <Property Name="NotasFisicas" Type="ntext" />
+          <Property Name="NumeroEstacionamiento" Type="int" />
+          <Property Name="TipoEstacionamiento" Type="nvarchar" MaxLength="50" />
+          <Property Name="Propietario" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Auto_Archivo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAuto" Type="int" />
+          <Property Name="archivo" Type="ntext" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vigencia" Type="date" />
+          <Property Name="notas" Type="ntext" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="FechaInicio" Type="date" />
+          <Property Name="Poliza" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cobertura" Type="nvarchar" MaxLength="100" />
+          <Property Name="numeroContrato" Type="nvarchar" MaxLength="25" />
+          <Property Name="numerofactura" Type="nvarchar" MaxLength="25" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="auto_Fotos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idauto" Type="int" />
+          <Property Name="url" Type="ntext" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Cheking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Revicion" Type="nvarchar" MaxLength="150" />
+          <Property Name="idAuto" Type="int" />
+          <Property Name="idPersona" Type="int" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="kilometrajeActual" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="valorint1" Type="bit" />
+          <Property Name="valorint2" Type="bit" />
+          <Property Name="valorint3" Type="bit" />
+          <Property Name="valorint4" Type="bit" />
+          <Property Name="valorint5" Type="bit" />
+          <Property Name="valorint6" Type="bit" />
+          <Property Name="valorint7" Type="bit" />
+          <Property Name="valorint8" Type="bit" />
+          <Property Name="valormot1" Type="bit" />
+          <Property Name="valormot2" Type="bit" />
+          <Property Name="valormot3" Type="bit" />
+          <Property Name="valormot4" Type="bit" />
+          <Property Name="valorpart1" Type="bit" />
+          <Property Name="valorpart2" Type="bit" />
+          <Property Name="valorpart3" Type="bit" />
+          <Property Name="valorpart4" Type="bit" />
+          <Property Name="valorex1" Type="bit" />
+          <Property Name="valorex2" Type="bit" />
+          <Property Name="valorex3" Type="bit" />
+          <Property Name="valorex4" Type="bit" />
+          <Property Name="gasolina" Type="int" />
+          <Property Name="aceite" Type="int" />
+          <Property Name="imagenes" Type="ntext" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="notas" Type="ntext" />
+          <Property Name="FotoA" Type="ntext" />
+          <Property Name="FotoB" Type="ntext" />
+          <Property Name="FotoC" Type="ntext" />
+          <Property Name="FotoD" Type="ntext" />
+          <Property Name="valordoc1" Type="bit" />
+          <Property Name="valordoc2" Type="bit" />
+          <Property Name="valordoc3" Type="bit" />
+          <Property Name="valordoc4" Type="bit" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Departamento" Type="nvarchar" MaxLength="150" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Entrega_Sevicios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idServicio" Type="int" />
+          <Property Name="semanasGarantiaservicio" Type="int" />
+          <Property Name="diasRealizarServicio" Type="int" />
+          <Property Name="Precio" Type="money" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="idorden" Type="int" />
+        </EntityType>
+        <EntityType Name="EntregaRecepcion_Vehiculo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAuto" Type="int" />
+          <Property Name="idPersonaEntrega" Type="int" />
+          <Property Name="idtaller" Type="int" />
+          <Property Name="fechaEntrega" Type="date" />
+          <Property Name="ObservecionesEntrega" Type="ntext" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="kilometrajeEntrega" Type="money" />
+          <Property Name="idPersonallegada" Type="int" />
+          <Property Name="fechallegada" Type="date" />
+          <Property Name="Observecionesllegada" Type="ntext" />
+          <Property Name="kilometrajellegada" Type="money" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Grupo_Relacion_Servicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idGrupo" Type="int" />
+          <Property Name="idServicio" Type="int" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="GrupoServicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="clave" Type="nvarchar" MaxLength="10" />
+          <Property Name="actio" Type="bit" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marca" Type="nvarchar" MaxLength="100" />
+          <Property Name="foto" Type="ntext" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMarca" Type="int" />
+          <Property Name="modelo" Type="nvarchar" MaxLength="100" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="256" />
+          <Property Name="token" Type="ntext" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="256" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="256" />
+          <Property Name="FechaNac" Type="datetime" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="30" />
+          <Property Name="Licencia" Type="nvarchar" MaxLength="100" />
+          <Property Name="Imagen" Type="ntext" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="30" />
+          <Property Name="idAuto" Type="int" />
+          <Property Name="idDepartamento" Type="int" />
+          <Property Name="calificacion" Type="int" />
+          <Property Name="idPUesto" Type="int" />
+          <Property Name="Genero" Type="nvarchar" MaxLength="20" />
+          <Property Name="Referencia" Type="nvarchar" MaxLength="20" />
+          <Property Name="ReferenciaNumero" Type="nvarchar" MaxLength="20" />
+          <Property Name="Departamento" Type="nvarchar" MaxLength="80" />
+          <Property Name="TipoLicncia" Type="nvarchar" MaxLength="5" />
+          <Property Name="Extencion" Type="nvarchar" MaxLength="50" />
+          <Property Name="observacionCalificacion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Persona_Archivo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPersona" Type="int" />
+          <Property Name="archivo" Type="ntext" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vigencia" Type="date" />
+        </EntityType>
+        <EntityType Name="Puesto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Puesto" Type="nvarchar" MaxLength="150" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="ServicioAuto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idauto" Type="int" />
+          <Property Name="idservicio" Type="int" />
+          <Property Name="idorder" Type="int" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="fechaPservicio" Type="date" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="serviciocategoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoria" Type="nvarchar" MaxLength="100" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="servicios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcategoria" Type="int" />
+          <Property Name="semanasGarantiaservicio" Type="int" />
+          <Property Name="diasRealizarServicio" Type="int" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="nombreServicio" Type="nvarchar" MaxLength="100" />
+          <Property Name="Precio" Type="money" />
+          <Property Name="KilometrosProximoServicio" Type="money" />
+        </EntityType>
+        <EntityType Name="ServicioTaller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idtaller" Type="int" />
+          <Property Name="idServicio" Type="int" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Siniestro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAuto" Type="int" />
+          <Property Name="idPersona" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="ubicacion" Type="ntext" />
+          <Property Name="idTipoSiniestro" Type="int" />
+          <Property Name="IdTipoSoporte" Type="int" />
+          <Property Name="Estatus" Type="nvarchar" MaxLength="100" />
+          <Property Name="notas" Type="ntext" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="tallerMecanico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreTaller" Type="nvarchar" MaxLength="200" />
+          <Property Name="ubicacion" Type="ntext" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="TipoSiniestro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="notas" Type="ntext" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="TipoSoporte">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="notas" Type="ntext" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="vtreact_Covume2ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auto" EntityType="Self.Auto" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Auto_Archivo" EntityType="Self.Auto_Archivo" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="auto_Fotos" EntityType="Self.auto_Fotos" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Cheking" EntityType="Self.Cheking" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Entrega_Sevicios" EntityType="Self.Entrega_Sevicios" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="EntregaRecepcion_Vehiculo" EntityType="Self.EntregaRecepcion_Vehiculo" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Grupo_Relacion_Servicio" EntityType="Self.Grupo_Relacion_Servicio" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="GrupoServicio" EntityType="Self.GrupoServicio" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Modelo" EntityType="Self.Modelo" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Persona_Archivo" EntityType="Self.Persona_Archivo" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Puesto" EntityType="Self.Puesto" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="ServicioAuto" EntityType="Self.ServicioAuto" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="serviciocategoria" EntityType="Self.serviciocategoria" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="servicios" EntityType="Self.servicios" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="ServicioTaller" EntityType="Self.ServicioTaller" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="Siniestro" EntityType="Self.Siniestro" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="tallerMecanico" EntityType="Self.tallerMecanico" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="TipoSiniestro" EntityType="Self.TipoSiniestro" Schema="vtreact_Prueba" store:Type="Tables" />
+          <EntitySet Name="TipoSoporte" EntityType="Self.TipoSoporte" Schema="vtreact_Prueba" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="vtreact_Covume2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Correo" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="FechaNac" Type="DateTime" Precision="3" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="Telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Licencia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="estatus" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="idAuto" Type="Int32" />
+          <Property Name="idDepartamento" Type="Int32" />
+          <Property Name="calificacion" Type="Int32" />
+          <Property Name="idPUesto" Type="Int32" />
+          <Property Name="Genero" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Referencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenciaNumero" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Departamento" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="TipoLicncia" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Extencion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="observacionCalificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="vtreact_Covume2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Auto" EntityType="vtreact_Covume2Model.Auto" />
+          <EntitySet Name="Marca" EntityType="vtreact_Covume2Model.Marca" />
+          <EntitySet Name="Modelo" EntityType="vtreact_Covume2Model.Modelo" />
+          <EntitySet Name="auto_Fotos" EntityType="vtreact_Covume2Model.auto_Fotos" />
+          <EntitySet Name="Auto_Archivo" EntityType="vtreact_Covume2Model.Auto_Archivo" />
+          <EntitySet Name="Persona_Archivo" EntityType="vtreact_Covume2Model.Persona_Archivo" />
+          <EntitySet Name="Departamento" EntityType="vtreact_Covume2Model.Departamento" />
+          <EntitySet Name="serviciocategoria" EntityType="vtreact_Covume2Model.serviciocategoria" />
+          <EntitySet Name="ServicioTaller" EntityType="vtreact_Covume2Model.ServicioTaller" />
+          <EntitySet Name="tallerMecanico" EntityType="vtreact_Covume2Model.tallerMecanico" />
+          <EntitySet Name="Cheking" EntityType="vtreact_Covume2Model.Cheking" />
+          <EntitySet Name="Puesto" EntityType="vtreact_Covume2Model.Puesto" />
+          <EntitySet Name="Siniestro" EntityType="vtreact_Covume2Model.Siniestro" />
+          <EntitySet Name="TipoSiniestro" EntityType="vtreact_Covume2Model.TipoSiniestro" />
+          <EntitySet Name="TipoSoporte" EntityType="vtreact_Covume2Model.TipoSoporte" />
+          <EntitySet Name="EntregaRecepcion_Vehiculo" EntityType="vtreact_Covume2Model.EntregaRecepcion_Vehiculo" />
+          <EntitySet Name="Entrega_Sevicios" EntityType="vtreact_Covume2Model.Entrega_Sevicios" />
+          <EntitySet Name="servicios" EntityType="vtreact_Covume2Model.servicios" />
+          <EntitySet Name="ServicioAuto" EntityType="vtreact_Covume2Model.ServicioAuto" />
+          <EntitySet Name="Grupo_Relacion_Servicio" EntityType="vtreact_Covume2Model.Grupo_Relacion_Servicio" />
+          <EntitySet Name="GrupoServicio" EntityType="vtreact_Covume2Model.GrupoServicio" />
+        </EntityContainer>
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idmarca" Type="Int32" />
+          <Property Name="idmodelo" Type="Int32" />
+          <Property Name="vin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="año" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="placas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaAdquisicion" Type="DateTime" Precision="0" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="Estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KilometrajeActual" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="estadoFisico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NotasFisicas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroEstacionamiento" Type="Int32" />
+          <Property Name="TipoEstacionamiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Propietario" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marca1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMarca" Type="Int32" />
+          <Property Name="modelo1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="auto_Fotos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idauto" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Auto_Archivo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAuto" Type="Int32" />
+          <Property Name="archivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="estatus" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vigencia" Type="DateTime" Precision="0" />
+          <Property Name="notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="Poliza" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cobertura" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="numeroContrato" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="numerofactura" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Persona_Archivo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPersona" Type="Int32" />
+          <Property Name="archivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="estatus" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vigencia" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Departamento1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="serviciocategoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ServicioTaller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idtaller" Type="Int32" />
+          <Property Name="idServicio" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tallerMecanico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreTaller" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ubicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Cheking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Revicion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="idAuto" Type="Int32" />
+          <Property Name="idPersona" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="kilometrajeActual" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="valorint1" Type="Boolean" />
+          <Property Name="valorint2" Type="Boolean" />
+          <Property Name="valorint3" Type="Boolean" />
+          <Property Name="valorint4" Type="Boolean" />
+          <Property Name="valorint5" Type="Boolean" />
+          <Property Name="valorint6" Type="Boolean" />
+          <Property Name="valorint7" Type="Boolean" />
+          <Property Name="valorint8" Type="Boolean" />
+          <Property Name="valormot1" Type="Boolean" />
+          <Property Name="valormot2" Type="Boolean" />
+          <Property Name="valormot3" Type="Boolean" />
+          <Property Name="valormot4" Type="Boolean" />
+          <Property Name="valorpart1" Type="Boolean" />
+          <Property Name="valorpart2" Type="Boolean" />
+          <Property Name="valorpart3" Type="Boolean" />
+          <Property Name="valorpart4" Type="Boolean" />
+          <Property Name="valorex1" Type="Boolean" />
+          <Property Name="valorex2" Type="Boolean" />
+          <Property Name="valorex3" Type="Boolean" />
+          <Property Name="valorex4" Type="Boolean" />
+          <Property Name="gasolina" Type="Int32" />
+          <Property Name="aceite" Type="Int32" />
+          <Property Name="imagenes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FotoA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FotoB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FotoC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FotoD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="valordoc1" Type="Boolean" />
+          <Property Name="valordoc2" Type="Boolean" />
+          <Property Name="valordoc3" Type="Boolean" />
+          <Property Name="valordoc4" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Puesto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Puesto1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Siniestro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAuto" Type="Int32" />
+          <Property Name="idPersona" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="ubicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idTipoSiniestro" Type="Int32" />
+          <Property Name="IdTipoSoporte" Type="Int32" />
+          <Property Name="Estatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TipoSiniestro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TipoSoporte">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="EntregaRecepcion_Vehiculo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAuto" Type="Int32" />
+          <Property Name="idPersonaEntrega" Type="Int32" />
+          <Property Name="fechaEntrega" Type="DateTime" Precision="0" />
+          <Property Name="ObservecionesEntrega" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="kilometrajeEntrega" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="idPersonallegada" Type="Int32" />
+          <Property Name="fechallegada" Type="DateTime" Precision="0" />
+          <Property Name="Observecionesllegada" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kilometrajellegada" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="idtaller" Type="Int32" />
+          <Property Name="estatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Entrega_Sevicios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idServicio" Type="Int32" />
+          <Property Name="semanasGarantiaservicio" Type="Int32" />
+          <Property Name="diasRealizarServicio" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="idorden" Type="Int32" />
+        </EntityType>
+        <EntityType Name="servicios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcategoria" Type="Int32" />
+          <Property Name="semanasGarantiaservicio" Type="Int32" />
+          <Property Name="diasRealizarServicio" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="nombreServicio" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="KilometrosProximoServicio" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="ServicioAuto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idauto" Type="Int32" />
+          <Property Name="idservicio" Type="Int32" />
+          <Property Name="idorder" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="fechaPservicio" Type="DateTime" Precision="0" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Grupo_Relacion_Servicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idGrupo" Type="Int32" />
+          <Property Name="idServicio" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="GrupoServicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clave" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="actio" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="vtreact_Covume2ModelStoreContainer" CdmEntityContainer="vtreact_Covume2Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="observacionCalificacion" ColumnName="observacionCalificacion" />
+                <ScalarProperty Name="Extencion" ColumnName="Extencion" />
+                <ScalarProperty Name="TipoLicncia" ColumnName="TipoLicncia" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+                <ScalarProperty Name="ReferenciaNumero" ColumnName="ReferenciaNumero" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="idPUesto" ColumnName="idPUesto" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="idDepartamento" ColumnName="idDepartamento" />
+                <ScalarProperty Name="idAuto" ColumnName="idAuto" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Licencia" ColumnName="Licencia" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="vtreact_Covume2Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Auto">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Auto">
+              <MappingFragment StoreEntitySet="Auto">
+                <ScalarProperty Name="Propietario" ColumnName="Propietario" />
+                <ScalarProperty Name="TipoEstacionamiento" ColumnName="TipoEstacionamiento" />
+                <ScalarProperty Name="NumeroEstacionamiento" ColumnName="NumeroEstacionamiento" />
+                <ScalarProperty Name="NotasFisicas" ColumnName="NotasFisicas" />
+                <ScalarProperty Name="estadoFisico" ColumnName="estadoFisico" />
+                <ScalarProperty Name="KilometrajeActual" ColumnName="KilometrajeActual" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="FechaAdquisicion" ColumnName="FechaAdquisicion" />
+                <ScalarProperty Name="placas" ColumnName="placas" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="año" ColumnName="año" />
+                <ScalarProperty Name="vin" ColumnName="vin" />
+                <ScalarProperty Name="idmodelo" ColumnName="idmodelo" />
+                <ScalarProperty Name="idmarca" ColumnName="idmarca" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Marca">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="Marca1" ColumnName="Marca" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modelo">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Modelo">
+              <MappingFragment StoreEntitySet="Modelo">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="modelo1" ColumnName="modelo" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="auto_Fotos">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.auto_Fotos">
+              <MappingFragment StoreEntitySet="auto_Fotos">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="idauto" ColumnName="idauto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auto_Archivo">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Auto_Archivo">
+              <MappingFragment StoreEntitySet="Auto_Archivo">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="numerofactura" ColumnName="numerofactura" />
+                <ScalarProperty Name="numeroContrato" ColumnName="numeroContrato" />
+                <ScalarProperty Name="Cobertura" ColumnName="Cobertura" />
+                <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="notas" ColumnName="notas" />
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
+                <ScalarProperty Name="idAuto" ColumnName="idAuto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona_Archivo">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Persona_Archivo">
+              <MappingFragment StoreEntitySet="Persona_Archivo">
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departamento">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Departamento">
+              <MappingFragment StoreEntitySet="Departamento">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="Departamento1" ColumnName="Departamento" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="serviciocategoria">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.serviciocategoria">
+              <MappingFragment StoreEntitySet="serviciocategoria">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicioTaller">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.ServicioTaller">
+              <MappingFragment StoreEntitySet="ServicioTaller">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="idServicio" ColumnName="idServicio" />
+                <ScalarProperty Name="idtaller" ColumnName="idtaller" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tallerMecanico">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.tallerMecanico">
+              <MappingFragment StoreEntitySet="tallerMecanico">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="nombreTaller" ColumnName="nombreTaller" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cheking">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Cheking">
+              <MappingFragment StoreEntitySet="Cheking">
+                <ScalarProperty Name="valordoc4" ColumnName="valordoc4" />
+                <ScalarProperty Name="valordoc3" ColumnName="valordoc3" />
+                <ScalarProperty Name="valordoc2" ColumnName="valordoc2" />
+                <ScalarProperty Name="valordoc1" ColumnName="valordoc1" />
+                <ScalarProperty Name="FotoD" ColumnName="FotoD" />
+                <ScalarProperty Name="FotoC" ColumnName="FotoC" />
+                <ScalarProperty Name="FotoB" ColumnName="FotoB" />
+                <ScalarProperty Name="FotoA" ColumnName="FotoA" />
+                <ScalarProperty Name="notas" ColumnName="notas" />
+                <ScalarProperty Name="imagenes" ColumnName="imagenes" />
+                <ScalarProperty Name="aceite" ColumnName="aceite" />
+                <ScalarProperty Name="gasolina" ColumnName="gasolina" />
+                <ScalarProperty Name="valorex4" ColumnName="valorex4" />
+                <ScalarProperty Name="valorex3" ColumnName="valorex3" />
+                <ScalarProperty Name="valorex2" ColumnName="valorex2" />
+                <ScalarProperty Name="valorex1" ColumnName="valorex1" />
+                <ScalarProperty Name="valorpart4" ColumnName="valorpart4" />
+                <ScalarProperty Name="valorpart3" ColumnName="valorpart3" />
+                <ScalarProperty Name="valorpart2" ColumnName="valorpart2" />
+                <ScalarProperty Name="valorpart1" ColumnName="valorpart1" />
+                <ScalarProperty Name="valormot4" ColumnName="valormot4" />
+                <ScalarProperty Name="valormot3" ColumnName="valormot3" />
+                <ScalarProperty Name="valormot2" ColumnName="valormot2" />
+                <ScalarProperty Name="valormot1" ColumnName="valormot1" />
+                <ScalarProperty Name="valorint8" ColumnName="valorint8" />
+                <ScalarProperty Name="valorint7" ColumnName="valorint7" />
+                <ScalarProperty Name="valorint6" ColumnName="valorint6" />
+                <ScalarProperty Name="valorint5" ColumnName="valorint5" />
+                <ScalarProperty Name="valorint4" ColumnName="valorint4" />
+                <ScalarProperty Name="valorint3" ColumnName="valorint3" />
+                <ScalarProperty Name="valorint2" ColumnName="valorint2" />
+                <ScalarProperty Name="valorint1" ColumnName="valorint1" />
+                <ScalarProperty Name="kilometrajeActual" ColumnName="kilometrajeActual" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idAuto" ColumnName="idAuto" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="Revicion" ColumnName="Revicion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puesto">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Puesto">
+              <MappingFragment StoreEntitySet="Puesto">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="Puesto1" ColumnName="Puesto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siniestro">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Siniestro">
+              <MappingFragment StoreEntitySet="Siniestro">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="notas" ColumnName="notas" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdTipoSoporte" ColumnName="IdTipoSoporte" />
+                <ScalarProperty Name="idTipoSiniestro" ColumnName="idTipoSiniestro" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idAuto" ColumnName="idAuto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoSiniestro">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.TipoSiniestro">
+              <MappingFragment StoreEntitySet="TipoSiniestro">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="notas" ColumnName="notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoSoporte">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.TipoSoporte">
+              <MappingFragment StoreEntitySet="TipoSoporte">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="notas" ColumnName="notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntregaRecepcion_Vehiculo">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.EntregaRecepcion_Vehiculo">
+              <MappingFragment StoreEntitySet="EntregaRecepcion_Vehiculo">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idtaller" ColumnName="idtaller" />
+                <ScalarProperty Name="kilometrajellegada" ColumnName="kilometrajellegada" />
+                <ScalarProperty Name="Observecionesllegada" ColumnName="Observecionesllegada" />
+                <ScalarProperty Name="fechallegada" ColumnName="fechallegada" />
+                <ScalarProperty Name="idPersonallegada" ColumnName="idPersonallegada" />
+                <ScalarProperty Name="kilometrajeEntrega" ColumnName="kilometrajeEntrega" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="ObservecionesEntrega" ColumnName="ObservecionesEntrega" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+                <ScalarProperty Name="idPersonaEntrega" ColumnName="idPersonaEntrega" />
+                <ScalarProperty Name="idAuto" ColumnName="idAuto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entrega_Sevicios">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Entrega_Sevicios">
+              <MappingFragment StoreEntitySet="Entrega_Sevicios">
+                <ScalarProperty Name="idorden" ColumnName="idorden" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="diasRealizarServicio" ColumnName="diasRealizarServicio" />
+                <ScalarProperty Name="semanasGarantiaservicio" ColumnName="semanasGarantiaservicio" />
+                <ScalarProperty Name="idServicio" ColumnName="idServicio" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicios">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.servicios">
+              <MappingFragment StoreEntitySet="servicios">
+                <ScalarProperty Name="KilometrosProximoServicio" ColumnName="KilometrosProximoServicio" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="nombreServicio" ColumnName="nombreServicio" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="diasRealizarServicio" ColumnName="diasRealizarServicio" />
+                <ScalarProperty Name="semanasGarantiaservicio" ColumnName="semanasGarantiaservicio" />
+                <ScalarProperty Name="idcategoria" ColumnName="idcategoria" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicioAuto">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.ServicioAuto">
+              <MappingFragment StoreEntitySet="ServicioAuto">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fechaPservicio" ColumnName="fechaPservicio" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idorder" ColumnName="idorder" />
+                <ScalarProperty Name="idservicio" ColumnName="idservicio" />
+                <ScalarProperty Name="idauto" ColumnName="idauto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupo_Relacion_Servicio">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.Grupo_Relacion_Servicio">
+              <MappingFragment StoreEntitySet="Grupo_Relacion_Servicio">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="idServicio" ColumnName="idServicio" />
+                <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrupoServicio">
+            <EntityTypeMapping TypeName="vtreact_Covume2Model.GrupoServicio">
+              <MappingFragment StoreEntitySet="GrupoServicio">
+                <ScalarProperty Name="actio" ColumnName="actio" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

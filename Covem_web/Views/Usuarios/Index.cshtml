@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Covem_web.Persona>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Lista de Usuarios</h4>
+        <p>
+
+            <a class="btn btn-outline-primary btn-fw" href="/usuarios/Create">Registrar un  Conductor</a>
+        </p>
+        @using (Html.BeginForm("index", "Usuarios", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row" style="background-color:lightgray">
+                <duv class="col-md-3">
+                    Departamento  <select name="SlDepartamento" class="js-example-basic-single w-100">
+                        <option value="">Todos</option>
+                        @foreach (var data in ViewBag.data)
+                        {
+                            <option value="@data.id">@data.Departamento1</option>
+                        }
+                    </select>
+                </duv>
+                <duv class="col-md-3">Nombre <input type="text" id="txtNombre" name="txtNombre" class="form-control" /></duv>
+                <duv class="col-md-3">Licencia <input type="text" id="txtLicencia" name="txtLicencia" class="form-control" /></duv>
+                <duv class="col-md-3"><br /><input type="submit" class="btn btn-outline-primary btn-fw" value="Busqueda" /></duv>
+                <div class="row"></div>
+            </div>
+
+        }
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+
+
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telefono)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Licencia)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var archivo = item.FechaNac.Value.ToShortDateString();
+                                var fecha2 = item.FechaRegistro.Value.ToShortDateString();
+                                <tr>
+
+                                    <td class="py-1">
+                                        <div class="d-flex align-items-center">
+                                            <img src="@item.Imagen" alt="profile" />
+                                            <div class="ms-3">
+                                                <p class="mb-0">@Html.DisplayFor(modelItem => item.nombre)  @Html.DisplayFor(modelItem => item.Apellidos)</p>
+                                                <p class="mb-0 text-muted text-small"> @Html.DisplayFor(modelItem => item.Departamento)</p>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Telefono)
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+
+                                            <div class="ms-3">
+                                                <p class="mb-0">@Html.DisplayFor(modelItem => item.Licencia)</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @*  @Html.ActionLink("", "Archivo", new { id = item.Id })*@
+                                        <a class="btn btn-primary btn-fw" href="/usuarios/Editar/@item.Id">Editar </a>
+
+                                        <a class="btn btn-outline-primary btn-fw" href="/usuarios/Archivo/@item.Id">Archivo Digital</a>
+                                        <a class="btn btn-outline-secondary btn-fw" href="/usuarios/Credenciales/?correo=@item.Correo">Credenciales</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

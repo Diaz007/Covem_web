@@ -1,0 +1,85 @@
+﻿@model Covem_web.tallerMecanico
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center">
+                    <img src="https://covemu.vtreact.com/archivos/imagen1.jpg" class="img-lg rounded" alt="profile image" />
+                    <div class="ms-sm-3 ms-md-0 ms-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0">
+                        <h6 class="mb-0">@Model.nombreTaller</h6>
+                        <p class="text-muted mb-1">@Model.ubicacion</p>
+                        <p class="mb-0 text-success font-weight-bold">activo    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Servicios Que Realiza el Taller </h4>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Categoria</th>
+                                <th>Dias para Servicio</th>
+                                <th>Semanas Garantia</th>
+
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.Valores)
+                            {
+                            <tr>
+                                <td>
+                                    @(item.servicio.nombreServicio)
+                                </td>
+                                <td>
+                                    @(item.categoria.categoria)
+                                </td>
+                                <td>
+                                    @(item.servicio.diasRealizarServicio)
+                                </td>
+                                <td>
+                                @item.servicio.semanasGarantiaservicio 
+
+                                </td>
+                                <td>
+                                    @(item.Taller.activo)
+                                </td>
+                                <td>     @Html.ActionLink("Asignar", "Asignar", new { id = item.Taller.id }, new { @class = "btn btn-outline-primary" }) |</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

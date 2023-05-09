@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Covem_web.Marca_Completa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Lista de Marcas</h4>
+        <p>
+            @Html.ActionLink("Registrar Nueva Marca", "Create")
+        </p>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>Marca</th>
+                                <th>Modelos Generados de la marca </th>
+                                
+                                <th>Acciones</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="py-1">
+                                        <div class="d-flex align-items-center">
+                                            <img src="@item.Marca.foto" alt="image" />
+                                            <div class="ms-3">
+                                                <p class="mb-0">@item.Marca.Marca1</p>
+                                                  </div>
+                                        </div>
+
+                                    </td>
+                                    
+                                    <td>@item.modelos </td>
+                                    <td>
+                                       @Html.ActionLink("Editar", "edit", new { id = item.Marca.id }) |
+                                       @Html.ActionLink("Eliminar", "Delete", new { id = item.Marca.id, @class = "btn btn-outline-success" }, new { onclick = "return confirm('Seguro de eliminar esta Marca? ');" })
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

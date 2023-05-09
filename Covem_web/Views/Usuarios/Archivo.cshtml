@@ -1,0 +1,210 @@
+﻿@model Covem_web.Persona_Archivos
+
+@{
+    ViewBag.Title = "Archivo";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        @using (Html.BeginForm("Calificar", "Usuarios", FormMethod.Post, new
+                        {
+                            enctype = "multipart/form-data"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => m.persona.Id)
+                        <div class="border-bottom text-center pb-4">
+                            <img src=@Model.persona.Imagen.ToString() alt="profile" class="img-lg rounded-circle mb-3" />
+                            <div class="mb-3">
+                                <h3>@Model.persona.nombre @Model.persona.Apellidos</h3>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <h5 class="mb-0 me-2 text-muted">Calificacion</h5>
+
+                                    <select id="example-fontawesome" name="rating" autocomplete="off">
+                                        @for (int i = 1; i < 11; i++)
+                                        {
+                                            if (Model.persona.calificacion != null)
+                                            {
+                                                if (Model.persona.calificacion == i)
+                                                {
+                                                    <option selected="selected" value="@i.ToString()">i</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@i.ToString()">i</option>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="@i.ToString()">i</option>
+                                            }
+                                        }
+
+
+                                        @**@
+
+                                    </select>
+
+                                </div>
+
+
+                            </div>
+                            @Html.TextAreaFor(m => m.persona.observacionCalificacion , new {@class="form-control" })
+                            <div class="d-flex justify-content-center">
+
+                                <button type="submit" class="btn btn-primary me-2">Confirmar Calificacion</button>
+                            </div>
+                        </div>
+                        }
+                        <div class="py-4">
+                            <p class="clearfix">
+                                <span class="float-left">
+                                    Estatus
+                                </span>
+                                <span class="float-right text-muted">
+                                    @Model.persona.estatus
+                                </span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="float-left">
+                                    Telefono
+                                </span>
+                                <span class="float-right text-muted">
+                                    @Model.persona.Telefono
+                                </span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="float-left">
+                                    Mail
+                                </span>
+                                <span class="float-right text-muted">
+                                    @Model.persona.Correo
+                                </span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="float-left">
+                                    Edad
+                                </span>
+                                <span class="float-right text-muted">
+                                    @{ int x = DateTime.Now.Year - Model.persona.FechaNac.Value.Year; }
+                                    @if (DateTime.Now.Month < Model.persona.FechaNac.Value.Month) { x = x - 1; }
+                                    @x - (@Model.persona.FechaNac.Value.ToShortDateString())
+
+                                </span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="float-left">
+                                    Licencia
+                                </span>
+                                <span class="float-right text-muted">
+                                    @Model.persona.Licencia
+                                </span>
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="d-block d-md-flex justify-content-between mt-4 mt-md-0">
+                            <div class="text-center mt-4 mt-md-0">
+                                <h2>Archivo del Personal </h2>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table id="order-listing" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Archivo</th>
+                                        <th>Disponible Hasta</th>
+                                        <th>Estatus</th>
+
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.archivos)
+                                    {
+                                        <tr>
+                                            <td>@item.nombre</td>
+                                            <td>@item.Vigencia.Value.ToShortDateString()</td>
+
+
+                                            <td>
+                                                @if (@item.Vigencia.Value < DateTime.Now)
+                                                {<label class="badge badge-danger">Vencido</label> }
+                                            else
+                                            {<label class="badge badge-success">Activo</label>}
+
+
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-outline-primary" target="_blank" rel="noopener noreferrer" href=@item.archivo>Ver</a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        @using (Html.BeginForm("Archivo", "Usuarios", FormMethod.Post, new
+                        {
+                            enctype = "multipart/form-data"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => m.persona.Id)
+
+                            <div class="mt-4 py-2 border-top border-bottom">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Registro de Documentos</h4>
+
+                                        <form class="forms-sample">
+                                            <div class="form-group">
+                                                <label for="txtNombre">Nombre de Archivo</label>
+                                                <input type="text" class="form-control" name="txtNombre" id="txtNombre" contenteditable="false" value="Licencia de Conducir">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-form-label">Tipo de Licencia</label>
+                                                <input class="form-control" id="txtTipoLicencia" name="txtTipoLicencia"   />
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-form-label">Imagen</label>
+                                                <input type="file" class="dropify" name="Image" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-form-label">Fecha de Vigencia</label>
+                                                <input class="form-control" id="txtFechaN" name="txtFechaN" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd/mm/yyyy" />
+
+                                            </div>
+                                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                            <button class="btn btn-light">Cancel</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Covem_web.tallerMecanico>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Lista de Talleres</h4>
+        <p>
+            @Html.ActionLink("Registrar Taller ", "Create")  |
+            @Html.ActionLink("Ver Detalles", "Download_PDF", new { @class = "btn btn-outline-primary" })
+        </p>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>Taller</th>
+                                <th>Ubicacion</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nombreTaller)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ubicacion)
+                                    </td>
+
+                                    <td>
+
+                                        @Html.ActionLink("Ver Detalles", "Details", new { id = item.id }, new { @class = "btn btn-outline-primary" }) |
+                                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-outline-danger" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

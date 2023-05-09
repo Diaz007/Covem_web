@@ -1,0 +1,176 @@
+﻿@model Covem_web.Persona
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+
+@using (Html.BeginForm("create", "Usuarios", FormMethod.Post, new
+{
+    enctype = "multipart/form-data"
+}))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div cl+ass="card-body">
+                <h4 class="card-title">Registro de Conductores.</h4>
+                <form class="form-sample">
+                    <p class="card-description">
+                        Informacion Personal
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Nombres</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Apellidos</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txtApellidos" name="txtApellidos" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Genero</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="SlcGenero" name="SlcGenero">
+                                        <option>Hombre</option>
+                                        <option>Mujer</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Fecha de Nacimiento</label>
+                                <div class="col-sm-9">
+
+                                    <input class="form-control" id="txtFechaN" name="txtFechaN" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd/mm/yyyy" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Departamento</label>
+                                <div class="col-sm-9">
+                                    <select name="SlDepartamento" class="js-example-basic-single w-100">
+                                        @foreach (var data in ViewBag.data)
+                                        {
+                                        <option value="@data.id">@data.Departamento1</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                           
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Extencion</label>
+                                <div class="col-sm-9">
+
+                                    <input class="form-control" id="txtExtencion" name="txtExtencion"   />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Telefono</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="txttelefono" name="txttelefono" data-inputmask-alias="(999)9999-999" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Licencia</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txtLicencia" name="txtLicencia" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Tipo de Licencia</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txtTipoLicencia" name="txtTipoLicencia" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Correo</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="txtcorreo" name="txtcorreo" data-inputmask="'alias': 'email'" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Imagen</label>
+                                <div class="col-sm-9">
+                                    @* <input type="file" class="dropify" id="TxtImagen" name="TxtImagen" />*@
+                                    @* @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @type = "file", @class = "dropify" } })*@
+                                    <input type="file" class="dropify" name="Image" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Persona a llamar en Hemergencia</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txtPersona2" name="txtPersona2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Telefono</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txttelefono2" name="txttelefono2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

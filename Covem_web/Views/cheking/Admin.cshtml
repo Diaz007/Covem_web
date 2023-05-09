@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Covem_web.Vista_Cheking>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+<h2>Administracion de Chekings</h2>
+
+<table id="order-listing" class="table">
+    <thead>
+        <tr>
+            <th>Empleado</th>
+            <th>Auto</th>
+            <th>Fecha</th>
+            <th>Estatus</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+        <tr>
+            <td>@item.persona.nombre @item.persona.Apellidos</td>
+            <td>@item.Marca.Marca1 @item.modelo.modelo1 @item.auto.año</td>
+            <td>@item.cheking.fecha</td>
+            <td>@item.cheking.Revicion</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id=item.cheking.id }) |
+                @Html.ActionLink("Reporte", "PDF", new { id = item.cheking.id }) |
+              @*  @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

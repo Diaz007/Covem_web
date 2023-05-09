@@ -1,0 +1,59 @@
+﻿@model Covem_web.modelo_Completa
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Edicion del Modelo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.modelo.id)
+
+        <div class="form-group">
+            Marca
+            <div class="col-md-10">
+                <select class="form-control" onchange="hola()" id="SlMarca" name="SlMarca">
+                    @{
+                        foreach (var item in Model.listamarcas)
+                        {
+                            if (item.id == Model.modelo.idMarca)
+                            {
+                                <option selected="selected" value="@item.id">@item.Marca1</option>
+                            }
+                            else {<option value="@item.id">@item.Marca1</option> }
+                        }
+                    }
+
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+           Modelo
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.modelo.modelo1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.modelo.modelo1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar Edicion" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,265 @@
+﻿@model Covem_web.Automoviles
+@{
+    ViewBag.Title = "Documentacion";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+<h2>Asignacion de Auto  a Taller Mecanico</h2>
+
+<div>
+    <h4>Automoviles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+</div>
+
+<div class="row">
+    <div class="col-md-5 grid-margin grid-margin-md-0 stretch-card">
+        <div class="card">
+            <div class="card-body text-center">
+                <div>
+                    <img src=@Model.Fotos.FirstOrDefault().url class="img-lg rounded-circle mb-2" alt="profile image" />
+                    <h4>@Model.marca.Marca1 @Model.modelo.modelo1</h4>
+                    <p class="text-muted mb-0">@Model.auto.año</p>
+                </div>
+                <p class="mt-2 card-text">
+                    Notas del Auto
+                </p>
+                <a class="btn btn-outline-primary btn-fw" href="/autos/documentacion/@Model.auto.id?bandera=1">Registrar un  Documento</a>
+                <a class="btn btn-outline-info btn-fw" href="/ServicioTallers/Nuevo/@Model.auto.id">Registrar una Orden de Servicio</a>
+                <div class="border-top pt-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <h6>5896</h6>
+                            <p>Km Recorridos</p>
+                        </div>
+                        <div class="col-4">
+                            <h6>1596</h6>
+                            <p>Km para proximo Servicio</p>
+                        </div>
+                        <div class="col-4">
+                            <h6>10</h6>
+                            <p>Servicios</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 grid-margin grid-margin-md-0 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                @if (Model.bandera == 0)
+                {
+                    <h4 class="card-title">lista de Documentos</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pt-1 ps-0">
+                                        Nombre
+                                    </th>
+                                    <th class="pt-1">
+                                        Vigencia
+                                    </th>
+                                    <th class="pt-1">
+                                        Accion
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var item in Model.Larchivo.ToList())
+                                    {
+                                        <tr>
+                                            <td class="py-1 ps-0">
+                                                <div class="d-flex align-items-center">
+                                                   
+                                                    <div class="ms-3">
+                                                        <p class="mb-0">@item.nombre </p>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 text-muted text-small">@item.Vigencia</p>
+                                            </td>
+                                            <td>
+                                                @* <label class="badge badge-success">Low</label>*@
+                                                <button class="badge badge-success"> @Html.ActionLink("Eliminar", "Documentacion", new { id = Model.auto.id, iddocumento = item.id }) </button>
+                                                <a class="btn btn-outline-info btn-fw"  target="_blank" href="~/@item.archivo">Ver Documento</a>                                                
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                @if (Model.bandera == 1)
+                {
+                    <h4 class="card-title">Registro de Documento</h4>
+                    <p class="card-description">
+                        Basic form layout
+                    </p>
+                    <script type="text/javascript">
+                        function validar(x) {
+                          
+                            if (x.value === 'Seguro') {
+
+                                document.getElementById('ctlpoliza').hidden = false;
+                                document.getElementById('ctlCobertura').hidden = false;
+                                document.getElementById('ctFechaVigencia').hidden = false;
+
+                                document.getElementById('ctlNumContrato').hidden = true;
+                                document.getElementById('ctlArrendador').hidden = true;
+                                document.getElementById('ctUsuario').hidden = true;
+                                document.getElementById('ctlNumFactura').hidden = true;
+
+                            } else if (x.value === 'Factura') {
+
+                                document.getElementById('ctlNumFactura').hidden = false;
+                                document.getElementById('ctFechaInicio').hidden = false;
+
+                                document.getElementById('ctFechaVigencia').hidden = true;
+                                document.getElementById('ctlpoliza').hidden = true;
+                                document.getElementById('ctlCobertura').hidden = true;
+                                document.getElementById('ctlNumContrato').hidden = true;
+                                document.getElementById('ctlArrendador').hidden = true;
+                                document.getElementById('ctUsuario').hidden = true;
+
+                            }
+                            else if (x.value === 'Compra Venta') {
+
+                                document.getElementById('ctFechaInicio').hidden = false;
+
+                                document.getElementById('ctFechaVigencia').hidden = true;
+                                document.getElementById('ctlpoliza').hidden = true;
+                                document.getElementById('ctlCobertura').hidden = true;
+                                document.getElementById('ctlNumContrato').hidden = true;
+                                document.getElementById('ctlArrendador').hidden = true;
+                                document.getElementById('ctlNumFactura').hidden = true;
+                                document.getElementById('ctUsuario').hidden = true;
+
+                                document.getElementById('Vigencia').value = 'Vendido/Comprado';
+                            }
+                            else if (x.value === 'Comprobante Revalidacion') {
+                                document.getElementById('ctFechaInicio').hidden = false;
+
+                                document.getElementById('ctFechaVigencia').hidden = false;
+
+                                document.getElementById('ctlpoliza').hidden = true;
+                                document.getElementById('ctlCobertura').hidden = true;
+                                document.getElementById('ctlNumContrato').hidden = true;
+                                document.getElementById('ctlArrendador').hidden = true;
+                                document.getElementById('ctlNumFactura').hidden = true;
+                                document.getElementById('ctUsuario').hidden = true;
+
+                                document.getElementById('Vigencia').value = 'Vendido/Comprado';
+                            }
+                            else if(x.value === 'Contrato Arrendamiento')
+                            {
+                               // alert(x.value);
+                                document.getElementById('ctFechaInicio').hidden = false;
+                                document.getElementById('ctlNumContrato').hidden = false;
+                                document.getElementById('ctlArrendador').hidden = false;
+
+                                document.getElementById('ctFechaVigencia').hidden = true;
+                                document.getElementById('ctlpoliza').hidden = true;
+                                document.getElementById('ctlCobertura').hidden = true;
+                                document.getElementById('ctlNumFactura').hidden = true;
+                                document.getElementById('ctUsuario').hidden = true;
+                            }
+                       
+                            
+                           /// { document.getElementById('ctlpoliza').hidden = true ; }
+
+                            //x.value === 'Seguro' ?
+                            //    document.getElementById('ctlpoliza').hidden =false :
+                            //    document.getElementById('ctlpoliza').hidden = true
+                        }
+                       
+                    </script>
+                    using (Html.BeginForm("NuevoDocumento", "Autos", FormMethod.Post, new
+                    {
+                        enctype = "multipart/form-data"
+                    }))
+                    {
+                        @Html.AntiForgeryToken()
+            <div class="forms-sample">
+                @Html.HiddenFor(x => x.auto.id)
+                <div class="form-group">
+                    <label for="Usuario">Documento</label>
+                    <select class="form-control" id="SlDocumento" name="SlDocumento" onchange="validar(this)">
+                        <option>Factura</option>
+                        <option>Compra Venta</option>
+                        <option>Comprobante Revalidacion</option>
+                        <option>Seguro</option>
+                        <option>Contrato Arrendamiento</option>
+                    </select>
+                </div>
+                <div id="ctlpoliza" hidden class="form-group">
+                    <label for="fechaEntrada">Poliza</label>
+                    <input class="form-control" id="txtPoliza" name="txtPoliza" placeholder="Poliza">
+                </div>
+                <div id="ctlCobertura" hidden class="form-group">
+                    <label for="fechaEntrada"> Cobertura</label>
+                    <input class="form-control" id="txtCobertura" name="txtCobertura" placeholder="Cobertura">
+                </div>
+                <div id="ctlNumContrato" hidden class="form-group">
+                    <label for="fechaEntrada">Num Contrato</label>
+                    <input class="form-control" id="txtNumContrato" name="txtNumContrato" placeholder="Num. Contrato">
+                </div>
+                <div id="ctlNumFactura"  class="form-group">
+                    <label for="fechaEntrada">Num Factura</label>
+                    <input class="form-control" id="txtNumFactura" name="txtNumFactura" placeholder="Num. Factura">
+                </div>
+                <div id="ctlArrendador" hidden class="form-group">
+                    <label for="fechaEntrada"> Arrendador</label>
+                    <input class="form-control" id="txtArrendador" name="txtArrendador" placeholder="Arrendador">
+                </div>
+                <div id="ctFechaInicio" class="form-group">
+                    <label for="fechaEntrada">Fecha Expedicion</label>
+                    <input type="date" class="form-control" id="txtFechaInicio" name="txtFechaInicio" value="@DateTime.Now.ToShortDateString()" placeholder="fecha de Expedicion">
+                </div>
+                <div hidden id="ctFechaVigencia" class="form-group">
+                    <label for="fechaEntrada">Fecha de Vigencia</label>
+                    <input type="date" class="form-control" id="fechaEntrada" name="fechaEntrada" value="@DateTime.Now.ToShortDateString()" placeholder="fecha Entrada">
+                </div>
+                <div id="ctUsuario" hidden class="form-group">
+                    <label for="kmEntrada">Usuario</label>
+                    <input class="form-control" id="txtUsuario" name="txtUsuario" placeholder="A nombre de ">
+                </div>
+                <div class="form-group">
+                    <label for="kmEntrada">Estatus</label>
+                    <input class="form-control" id="Vigencia" name="Vigencia" placeholder="Estatus" value="Vigente">
+                </div>
+                <div class="form-group">
+                    <label for="notas">Notas</label>
+                    <input class="form-control" id="notas" value="@Model.archivo.notas">
+                </div>
+                <div class="form-group">
+                    <label>Imagen</label>
+                    <input type="file" class="dropify" name="Image" />
+
+                </div>
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+            </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+  
+</div>
+
+
+
+

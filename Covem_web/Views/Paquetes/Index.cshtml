@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Covem_web.GrupoServicio>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+
+
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Grupos de Servicios</h4>
+        <p>
+            @Html.ActionLink("Registrar Nuevo Grupos de Servicios", "Create")
+        </p>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>Grupo de Servicios</th>
+                                <th>Clave</th>
+                                
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="py-1">
+                                        @item.nombre
+
+                                    </td>
+
+                                    <td>@item.clave </td>
+                                   
+                                    <td>
+                                        @Html.ActionLink("Editar", "edit", new { id = item.id }) |
+                                        @Html.ActionLink("Agregar Servicios", "Servicios", new { id = item.id }) |
+                                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id, @class = "btn btn-outline-success" }, new { onclick = "return confirm('Seguro de eliminar esta Paquete? ');" })
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

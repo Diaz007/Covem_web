@@ -1,0 +1,107 @@
+﻿@model Covem_web.EntregaRecepcion_Vehiculo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EntregaRecepcion_Vehiculo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idAuto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idAuto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idPersonaEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idPersonaEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ObservecionesEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ObservecionesEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kilometrajeEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kilometrajeEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idPersonallegada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idPersonallegada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechallegada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechallegada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observecionesllegada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observecionesllegada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kilometrajellegada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kilometrajellegada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idtaller)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idtaller)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

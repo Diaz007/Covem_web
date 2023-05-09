@@ -1,0 +1,191 @@
+﻿@model Covem_web.Persona
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout_Principal.cshtml";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div cl+ass="card-body">
+                <h4 class="card-title">Edicion de Conductores.</h4>
+                <form class="form-sample">
+                    <p class="card-description">
+                        Informacion Personal
+                    </p>
+                    @Html.HiddenFor(x => x.Id)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Nombres</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txtNombre" name="txtNombre" value="@Model.nombre" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Apellidos</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txtApellidos" value="@Model.Apellidos" name="txtApellidos" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Genero</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="SlcGenero" name="SlcGenero">
+                                        @{
+                                            if (Model.Genero == "Hombre")
+                                            {
+                                                <option>Hombre</option>
+                                                <option>Mujer</option>
+                                            }
+                                            else
+                                            {
+                                                <option>Mujer</option>
+                                                <option>Hombre</option>
+
+                                            }
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Fecha de Nacimiento</label>
+                                <div class="col-sm-9">
+
+                                    <input class="form-control" value="@Model.FechaNac.Value.ToShortDateString()" id="txtFechaN" name="txtFechaN" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd/mm/yyyy" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Departamento</label>
+                                <div class="col-sm-9">
+                                    <select name="SlDepartamento" class="js-example-basic-single w-100">
+                                        @foreach (var data in ViewBag.data)
+                                        {
+                                            if (Model.idDepartamento == data.id)
+                                            {
+                                                <option selected="selected" value="@data.id">@data.Departamento1</option>
+}
+                                            else
+                                            {
+                                                <option value="@data.id">@data.Departamento1</option>
+                                            }
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Extencion</label>
+                                <div class="col-sm-9">
+
+                                    <input class="form-control" id="txtExtencion"  value="@Model.Extencion" name="txtExtencion" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Telefono</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="txttelefono" name="txttelefono"  value="@Model.Telefono" data-inputmask-alias="(999)9999-999" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Licencia</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txtLicencia" name="txtLicencia"  value="@Model.Licencia" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Tipo de Licencia</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txtTipoLicencia" name="txtTipoLicencia"  value="@Model.TipoLicncia" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Correo</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="txtcorreo" name="txtcorreo"  value="@Model.Correo" data-inputmask="'alias': 'email'" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Imagen</label>
+                                <div class="col-sm-9">
+                                    @* <input type="file" class="dropify" id="TxtImagen" name="TxtImagen" />*@
+                                    @* @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @type = "file", @class = "dropify" } })*@
+                                    <input type="file" class="dropify" name="Image" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Persona a llamar en Hemergencia</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txtPersona2" name="txtPersona2"  value="@Model.Referencia" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Telefono</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="txttelefono2" name="txttelefono2"  value="@Model.ReferenciaNumero" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
